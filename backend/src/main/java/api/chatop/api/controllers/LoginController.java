@@ -16,5 +16,4 @@ public class LoginController {
   public String GetAdmin() {
     return "Hello Admin";
   }
-
 }
