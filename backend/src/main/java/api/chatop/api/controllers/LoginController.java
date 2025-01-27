@@ -1,19 +1,21 @@
 package api.chatop.api.controllers;
 
-
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+import api.chatop.api.service.JWTService;
 
 @RestController
 public class LoginController {
 
-  @GetMapping("/user")
-  public String GetUsers() {
-    return "Hello Users";
+  private final JWTService jwtService;
+
+  public LoginController(JWTService jwtService) {
+    this.jwtService = jwtService;
   }
 
-  @GetMapping("/admin")
-  public String GetAdmin() {
-    return "Hello Admin";
+  @PostMapping("/login")
+  public String getToken(Authentication authentication) {
+    return jwtService.generateToken(authentication);
   }
 }
