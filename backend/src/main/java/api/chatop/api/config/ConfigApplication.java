@@ -27,6 +27,7 @@ public class ConfigApplication {
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http
       .authorizeHttpRequests(auth -> auth
+        .requestMatchers("/login").permitAll()
         .requestMatchers("/admin").hasRole("ADMIN")
         .requestMatchers("/user").hasRole("USER")
         .anyRequest().authenticated()
